@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\InertiaTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,24 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    return Inertia::render('VueTest');
+}
+);
+
+Route::get('/component-test', function () {
+    return Inertia::render('ComponentTest');
+}
+);
+
+Route::get('/inertia-test/index',[InertiaTestController::class,'index'])->name('inertia.index');
+Route::get('/inertia-test/create',[InertiaTestController::class,'create'])->name('inertia.create');
+Route::get('/inertia-test/show/{id}',[InertiaTestController::class,'show'])->name('inertia.show');
+Route::post('/inertia-test',[InertiaTestController::class,'store'])->name('inertia.store');
+Route::delete('/inertia-test/{id}',[InertiaTestController::class,'delete'])->name('inertia.delete');
+
+
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
