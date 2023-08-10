@@ -1,18 +1,29 @@
 <script setup>
 import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
+import { reactive } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
+
+defineProps({
+    errors: Object
+})
+
+const submitfunction = () => {
+    Inertia.post('/inertia-test', form)
+}
 
 defineProps({
     errors: Object
 })
 
 const form = reactive({
-    title: null,
-    content: null
+    name: null,
+    memo: null,
+    price: null
 })
 
-const submitfunction = () => {
-    Inertia.post('/inertia-test', form)
+const storeItem = () => {
+    Inertia.post('/items', form)
 }
 </script>
 
