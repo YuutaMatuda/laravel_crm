@@ -1,20 +1,15 @@
 <script setup>
 import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import { reactive } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 
 defineProps({
     errors: Object
 })
 
-const submitfunction = () => {
-    Inertia.post('/inertia-test', form)
+function submitfunction() {
+    Inertia.post('/inertia-test', form);
 }
-
-defineProps({
-    errors: Object
-})
 
 const form = reactive({
     name: null,
@@ -29,6 +24,7 @@ const storeItem = () => {
 
 
 <template>
+    <BreezeValidationErrors :errors="errors" />
     <form @submit.prevent="submitfunction">
         <input type="text" name="title" v-model="form.title"><br>
         <div v-if="errors.title">{{ errors.title }}</div>
